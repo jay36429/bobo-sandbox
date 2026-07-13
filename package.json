@@ -1,0 +1,11 @@
+{
+  "name": "bobo",
+  "version": "0.1.0",
+  "description": "Tiny cart/pricing helper — disposable sandbox repo.",
+  "type": "module",
+  "main": "src/cart.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT"
+}
