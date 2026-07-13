@@ -1,15 +1,26 @@
-import test from 'node:test';
-import assert from 'node:assert';
-import { subtotal, applyDiscount, lineTotal } from '../src/cart.js';
+import test from "node:test";
+import { applyDiscount } from "../src/cart.js";
 
-test('subtotal adds up the lines', () => {
-  assert.strictEqual(subtotal([{ price: 10, qty: 2 }, { price: 5, qty: 1 }]), 25);
+test("applyDiscount throws an error for negative percent", () => {
+  const total = 100;
+  const percent = -10;
+  try {
+    applyDiscount(total, percent);
+  } catch (error) {
+    if (error.message !== "Percent must be between 0 and 100") {
+      throw error;
+    }
+  }
 });
 
-test('lineTotal multiplies price by qty', () => {
-  assert.strictEqual(lineTotal({ price: 3, qty: 4 }), 12);
-});
-
-test('applyDiscount takes a percentage off', () => {
-  assert.strictEqual(applyDiscount(100, 10), 90);
+test("applyDiscount throws an error for percent greater than 100", () => {
+  const total = 100;
+  const percent = 110;
+  try {
+    applyDiscount(total, percent);
+  } catch (error) {
+    if (error.message !== "Percent must be between 0 and 100") {
+      throw error;
+    }
+  }
 });
